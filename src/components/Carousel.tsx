@@ -25,13 +25,13 @@ export const Carousel: React.FC<Props> = ({
 
   const moveNext = () => {
     setCurrentIndex(prev => {
-      const next = prev + step;
+      const nextIndex = prev + step;
 
-      if (infinity && next >= images.length) {
-        return 0;
+      if (infinity) {
+        return nextIndex >= images.length ? 0 : nextIndex;
       }
 
-      return Math.min(next, images.length - frameSize);
+      return Math.min(nextIndex, images.length - frameSize);
     });
   };
 
