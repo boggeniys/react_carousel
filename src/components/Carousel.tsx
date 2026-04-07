@@ -3,8 +3,8 @@ import './Carousel.scss';
 
 interface Props {
   images: string[];
-  itemWidth: number;
-  frameSize: number;
+  itemWidth?: number;
+  frameSize?: number;
   step: number;
   animationDuration: number;
   infinity: boolean;
@@ -12,8 +12,8 @@ interface Props {
 
 export const Carousel: React.FC<Props> = ({
   images,
-  itemWidth,
-  frameSize,
+  itemWidth = 300,
+  frameSize = 3,
   step,
   animationDuration,
   infinity,
@@ -28,7 +28,7 @@ export const Carousel: React.FC<Props> = ({
       const nextIndex = prev + step;
 
       if (infinity) {
-        return nextIndex >= images.length ? 0 : nextIndex;
+        return nextIndex > images.length - frameSize ? 0 : nextIndex;
       }
 
       return Math.min(nextIndex, images.length - frameSize);
